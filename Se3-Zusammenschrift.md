@@ -35,18 +35,18 @@ Software-bezogene Qualität:
         - Spezifikationsvollständigkeit
 
 ---
-## Architektur
-- Architekturmuster
-    - sind Muster, die für die Organisation und Strukturierung von Software-Systemen verwendet werden.
-    - beschreiben, wie die Komponenten eines Systems miteinander verbunden sind und wie Steuerungsfluss und Datenfluss gestaltet sind.
-    - sind auf höherer Ebene als Desing-Patterns.
-    - sind normalerweise unabhängig von einer Programmiersprache.
-    - Beispiele: Model-View-Controller(MVC), Event-Driven Architecture(EDA), Microservices Architecture
-    - **Zusammenfassend: Architekturmuster beziehen sich auf die große Struktur des Systems.**
+# Architektur
+ ## Architekturmuster
+- sind Muster, die für die Organisation und Strukturierung von Software-Systemen verwendet werden.
+- beschreiben, wie die Komponenten eines Systems miteinander verbunden sind und wie Steuerungsfluss und Datenfluss gestaltet sind.
+- sind auf höherer Ebene als Desing-Patterns.
+- sind normalerweise unabhängig von einer Programmiersprache.
+- Beispiele: Model-View-Controller(MVC), Event-Driven Architecture(EDA), Microservices Architecture
+- **Zusammenfassend: Architekturmuster beziehen sich auf die große Struktur des Systems.**
 
-### Architekturmuster - Aufteilung
-- Strukturierende Architekturmuster
-    - Pipes und Filter
+## Architekturmuster - Aufteilung
+- ### Strukturierende Architekturmuster
+    - ### **Pipes und Filters** (Methode, um eine Aufgabe in kleineren Unteraufgaben (Filters) zu unterteilen, die dann in einer bestimmten Reihenfolge (Pipes) ausgeführt werden)
         - **Kontext:** System mit vielfältigen Aufgaben
         - **Probleme:**
             - Aufgaben sind fast immer unterschiedlich
@@ -63,20 +63,156 @@ Software-bezogene Qualität:
             - Geschwindigkeit und Latenzzeiten abh. vom langsamsten Teil
         - **Beispiele:**
             - Compiler, Konsolenbefehle der Unix-Shell, Funktionale Programmierung, Verteilte Systeme
-    - Schichten
-- Architekturmuster für interaktive Systeme
-    - MVC
-- Architekturmuster für verteilte Systeme
-    - Vermittler-Prinzip
-    - Client-Server
-    - Dienstorientierte Architektur
-    - Peer-to-Peer
+    ---
+    - ### **Schichten**
+        - **Kontext:** Ein großes/komplexes System, das aufgeteilt werden muss
+        - **Probleme:**
+            - Abhängigkeiten zwischen High- und Low-Level-Funktionalität
+            - Austauschbare Komponenten
+            - Integration bestehender Systeme
+        - **Lösung:**
+            - Einteilung in verschiedene angemessene Schichten
+            - Schitenanordnung übereinander
+        - **Vorteile:**
+            - Klare Aufgabenteilung
+            - Klarer Datenfluss
+            - Austauschbarkeit der Schichten
+            - Interface-Änderungen betreffen nur benachbarte Schicht
+        - **Nachteile:**
+            - Schichtentrennung nicht einfach
+            - Overhead (alle Schichten werden durchlaufen)
+            - Cascading Changes bei Redesign
+        - **Beispiele:**
+            - Netzwerkprotokolle: OSI-Schichtenmodell, Betriebssystemschichten: Kernel, Treiber, Anwendungen
+    ---
+- ### Architekturmuster für interaktive Systeme
+    - ### **MVC**
+        - **Kontext:** Austauschbare Benutzerschnittstellen
+        - **Probleme:**
+            - Häufige Änderung der Anforderungen an die Benutzerschnittstelle
+            - Mehrere Benutzerschnittstellen
+        - **Lösung:**
+            - Aufteilung in Komponenten: Datenmodell (Datenbank), Anwendungslogik und Präsentation
+            - Reduzierung von Abhängigkeiten
+        - **Vorteile:**
+            - Leichter austauschbare Benutzerschnittstellen
+            - Verwendung mehrerer Benutzerschnittstellen gleichzeitig
+        - **Nachteile:**
+            - Komplexe technische Realisierung
+            - Enge Bindung von View und Controller an Modell
+        - **Beispiele:**
+            - Webframeworks (Spring MVC, Ruby on Rails, Django)
+    ---
+- ### Architekturmuster für verteilte Systeme
+    - ### **Vermittler-Prinzip**
+        **Kontext:** Verteiltes System mit (unabhängigen) Komponenten, die zusammenarbeiten
+        - **Probleme:**
+            - Komponenten sollen andere Dienste anderer Komponenten abrufen können
+            - Weitere Dienste sollen zur Laufzeit ausgetauscht, hinzugefügt oder entfernt werden
+            - System soll keine Implementierungsdetails preisgeben
+        - **Lösung:**
+            - Einführung eines Vermittlers (Broker oder Mediator)
+            - Service Provider teilen ihre Dienste einem Vermittler mit
+            - Clients fordern Dienste vom Vermittler and, dieser leitet die Clients an passende Service Provider weiter.
+        - **Vorteile:**
+            - Einfache Kombination von Diensten
+            - Leicht erweiterbar
+        - **Nachteile:**
+            - Standardisierung  der Kommunikation notwendig
+            - Overhead für Vermittlung
+        - **Beispiele:**
+            - Chat-Server
+    ---
+    - ### **Client-Server**
+        **Kontext:** Verteilte Benutzer, zentrale Anwendung
+        - **Probleme:**
+            - Verteilte Nutzer, verschieden Funktionalität
+            - Skalierbarkeit (Anzahl Nutzer)
+            - Konsistenz, Vertraulichkeit
+        - **Lösung:**
+            - Verteilzung der Aufgaben auf Netzwerkkomponenten
+        - **Vorteile:**
+            - Verteilt
+            - Ein Dinest, viele Nutzer
+            - Skalierbar 
+        - **Nachteile:**
+            - Performanz und Fehlerbehandlung im Netzwerk
+            - Gleichzeitige Nutzer vs Daten/Zustands-Konsistenz
+            - Sicherheit
+            - Veritelungsmanagement
+        - **Beispiele:**
+            - WWW(HTTP, FTP), E-Mail(IMAP,POP3)
+- ### Dienstorientierte Architektur
+    - ### **Peer-to-Peer**
 
-- Design-Patterns
-    - sind Muster, die auf der Implementierung von einzelnen Komponenten eines Systems auf Basis von bestimmten Problemen aufbauen.
-    - beschreiben, wie bestimmte Probleme in einer bestimmten Programmiersprache gelöst werden können.
-    - sind auf tieferer Ebene als Architekturmuster.
-    - sind für bestimmte Programmiersprachen gültig.
-    - Design Pattern mit "globalem" Einfluss auf SW werden oft auch als Architekturmuster angesehen.
-    - Beispiele: Singleton, Factory Method, Observer
-    - **Zusammenfassend: Design-Patterns beziehen sich auf kleinere Strukturen und die Implementation von einzelnen Komponenten.**
+---
+## Design-Patterns
+- sind Muster, die auf der Implementierung von einzelnen Komponenten eines Systems auf Basis von bestimmten Problemen aufbauen.
+- beschreiben, wie bestimmte Probleme in einer bestimmten Programmiersprache gelöst werden können.
+- sind auf tieferer Ebene als Architekturmuster.
+- sind für bestimmte Programmiersprachen gültig.
+- Design Pattern mit "globalem" Einfluss auf SW werden oft auch als Architekturmuster angesehen.
+- Beispiele: Singleton, Factory Method, Observer
+- **Zusammenfassend: Design-Patterns beziehen sich auf kleinere Strukturen und die Implementation von einzelnen Komponenten.**
+---
+
+# Asynchrones Programmieren
+## Futures und Promises
+ Konzepte, die es ermöglichen asynchrone Operationen auszuführen und das Ergebnis zu einem späteren Zeitpunkt zu erhalten.
+
+### **Futures**
+- Um asynchrone Operationen in **asynchronen Umgebungen** auszuführen
+- einfacher und schneller zu implementieren als Promises, da sie nur das Ergenis einer asyn. Operation bereitstellen, aber **keine Möglichkeit** habem, das Ergebnis zu ändern.
+ - Beispiel:
+    ```javascript
+    const { setTimeout } = require("timers");
+    const { Future } = require("fluture");
+
+    const fetchData = () =>
+    Future((rej, res) =>
+        setTimeout(() => res("Data retrieved successfully"), 2000)
+    );
+
+    fetchData().fork(console.error, console.log);
+    ```
+    In diesem Beispiel wird die Funktion fetchData() eine Future zurückgeben die nach 2 Sekunden das Ergebnis "Data retrieved successfully" liefert. Die fork Methode wird aufgerufen, um das Ergebnis zu erhalten, die erste Funktion ist für einen Fehlerfall zuständig die zweite für den Erfolgfall.
+
+### **Listenable Futures**
+- Können nützlich sein, um asynchrone Operationen in einer bestimmten Reihenfolge auszuführen.  
+    &rarr; Listeners werden in der Reihenfolge registriert, in der sie aufgerufen werden.
+- Beispiel;
+    ```javascript
+    const listenableFuture = new ListenableFuture();
+
+    listenableFuture.addListener(result => {
+        console.log(result);
+    });
+
+    listenableFuture.setResult("Data retrieved successfully");
+    ```
+    In diesem Beispiel erstellt die ListenableFuture() eine neue Listenable Future, und addListener(result => {}) registriert einen Listener, der aufgerufen wird, wenn das Ergebnis der asynchronen Operation verfügbar ist. Die setResult Methode wird aufgerufen, um das Ergebnis der asynchronen Operation zu setzen und den registrierten Listener aufzurufen.
+
+ ### **Promises**
+- Um asynchrone Operationen in **synchronen Umgebungen** auszuführen
+- ähnlich wie Futures, aber mit dem Unterschied, das man eine Promise ändern kann.
+- haben meisten eine methode ```then``` um eine Callback-Funktion zu registrieren.
+- Beispiel:
+    ```javascript
+    function fetchData() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Data retrieved successfully");
+            }, 2000);
+        });
+    }
+
+    fetchData().then(result => {
+        console.log(result); // "Data retrieved successfully"
+    }).catch(error => {
+        console.log(error);
+    });
+    ```
+    In diesem Beispiel erstellt die Funktion fetchData() eine neue Promise, die nach 2 Sekunden das Ergebnis "Data retrieved successfully" liefert. Die Methode then der Promise wird aufgerufen, sobald das Ergebnis verfügbar ist und gibt das Ergebnis als Argument an die übergebene Callback-Funktion weiter.
+---
+
+# Event basierte Architektur
