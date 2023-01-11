@@ -216,3 +216,4 @@ Software-bezogene Qualität:
 ---
 
 # Event basierte Architektur
+---
