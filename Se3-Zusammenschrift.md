@@ -216,4 +216,115 @@ Software-bezogene Qualität:
 ---
 
 # Event basierte Architektur
+
+## Event Notification
+**Idee:**
+- Sendung von Event-Nachrichten, um über bereits vorgenommene Veränderungen zu benachrichtigen.
+- Ausgelöstes Event enthält ```keine Details``` 
+    - **Vorteile:**
+      - Einfach, neue Systeme umzusetzen
+    - **Nachteile:**
+      - nicht einfach festzustellen, welche Systeme alle von Daten abhängen.
+      - Resource Contention
+
+## Event Carried State Transfer
+**Idee:**
+- Für die Aktualisierung notwendigen Daten werden im Event mitgeschickt.
+  - **Vorteile:**
+    - einfach, neue Systeme umzusetzen.
+    - Jedes abhängige System kann seine Sicht auf die Daten vorhalten.  
+    &rarr; Vermeidung von „Resource contention”
+    - widerstandsfähiger, weil Empfänger unabhängig vom Sender funktionieren
+  - **Nachteile:**
+    - nicht einfach festzustellen, welche Systeme alle von Daten abhängen.
+    - nurnoch "eventually consitent"
+    - Großes Datenmengen im Event
+
+## Event-Sourcing
+**Idee:**
+- Modifizierung durch Events
+- Event-Logs  (Aufzeichnung der Änderungen)
+ &rarr; "Zeitreisen" möglich. Vergangenheit kann wiederhergestellt werden
+    - **Vorteile:**
+      - Überprüfbarkeit
+      - Debugging
+      - Skalierbarkeit
+      - Live Backup Systeme
+    - **Nachteile:**
+      - ungewöhnlich
+      - Events müssen langlebig sein
+      - Alles muss als Event repräsentiert werden
+      - Namensgebung
+
+## CQRS
+**Idee:**
+- Vergleichbar: Command Query Seperation (CQS)
+- Idee von CQS: Mit einer Datenstruktur nur Lesend, oder nur Schreibend interagieren.
+- Idee von CQRS: Es gibt ein Datenmodell zum Lesen, und ein Datenmodell zu Schreiben.
+- Trennung der Modelle &rarr; komplexe Ansichteneffektiv im Lese-Modell realisieren, ohne das Schreib-Modell zu beeinflussen.
+- Lese-Modell = gut skalierbar, d.h. es kann z.B. auf dem Client mithilfe von einem ```„Push”``` basierten
+Synchronisationsmechanismus und Events kontinuierlich aktuell gehalten werden.
+
 ---
+
+# Architektur dokumentieren (arc42)
+
+1. Einführung und Ziele
+   - Aufgabenstellung
+     - Was macht die Software?
+   - Qualitätsziele
+     - Wesentliche Qualitätsziele
+   - Stakeholder
+     - Aufzählung  von Stakeholders, ggf. Einsatz von Personas
+2. Randbedingungen
+   - Technische Randbedingungen
+     - Verwendete Hardware
+     - Clouddienste
+     - Betriebssysteme, VMs
+   - Organisatorische Randbedingungen
+     - Mitglieder des Teams
+     - Zeitliche Vorgaben
+     - Lizenzen
+     - Einsatz verwendeter Werkzeuge
+   - Konventionen
+     - Allg. Regeln:
+       - z.B. Open-Source Bibliotheken sind Closed-Source Bib. vorzuziehen
+     - Terminologie
+     - Coding Conventions
+3. Kontextabgrenzung
+   - Fachlicher Kontext
+     - Welche Benutzer hat das System (```Use-Case```)
+     - Mit welchem Fremdsystem interagiert das System
+   - Technische- oder Verteilungskontext 
+     - Welche Fremdsysteme?
+     - Technische Standards? Welche Dateiformate?
+   - 
+4. Lösungsstrategie
+   - Wie funktioniert die Lösung
+   - Fundamentale Lösungsansätze
+  
+5. Bausteinsicht
+   - Statische Struktur 
+   - Aufteilung in Subsysteme oder Komponenten
+   - Beschreibung wichtiger Bestandteile (```Klassendiagramme, Komponentendiagramme```)
+6. Laufzeitsicht
+   - Darstellung dynamischer Aspekte
+   - (```Sequenzdiagramm, Zustandsdiagramm, Aktivitätsdiagramm```)
+7. Verteilungssicht
+   - Welche Artefakte laufen auf welchem Knoten (```Verteilungsdiagramm```)
+8. Konzepte
+   - Wiederkehrende Muster und Strukturen
+   - Fachliche Strukturen
+9.  Entwurfsentscheidungen
+    - Darstellung wichtiger Entscheidungen
+    - Funktionale/Veränderbare Datenstrukturen
+    - Aufzeigen von Alternativen
+    - Analyse der Konsequenzen
+10. Qualitätsszenarien
+    - Beinhaltet Qualitätsszenarien
+    - Qualitätsbaum
+    - Bewertungsszenario
+11. Risiken
+    - Unsicherheiten werden dargelegt
+        - Mögliche Strategie zeigen, falls Risiko eintreten sollte
+12. Glossar
