@@ -328,3 +328,86 @@ Synchronisationsmechanismus und Events kontinuierlich aktuell gehalten werden.
     - Unsicherheiten werden dargelegt
         - Mögliche Strategie zeigen, falls Risiko eintreten sollte
 12. Glossar
+---
+
+# Testen und Verifizieren
+
+## Begrifflichkeiten
+- Fehlbedienung (Error/Mistake): Person bedient Programm nicht wie vorgesehen.  
+ &rarr;  bessere UI, Handbuch, bessere Fehlermeldung
+ - Defekt (Fault/Defect/Bug): Fehlverhalten des Programms  
+  &rarr; Review, Programmanalyse
+  - Fehler (Failure): Fehlverhalten des Programms gegenüber der Spezifikation, dass während seiner Ausführung auftritt  
+  &rarr; Test
+
+Unterschied Fehler zu Defekt:  
+Defekt ist ein unbefriedigendes Verhalten oder eine Abweichung von den Anforderungen, während ein Fehler die Ursache des Defekts beschreibt. Ein Defekt kann also durch mehrere Fehler verursacht werden und umgekehrt kann ein Fehler mehrere Defekte verursachen.
+- Beispiel: Ein Defekt kann sein das Programm stürzt ab, ein Fehler kann sein das eine Variable nicht richtig zugewiesen wurde und dadurch stürzt das Programm ab.
+
+## Assert
+- **Definition:**  
+Aktuelle Wert einer oder mehrerer Speicherstellen wird gegen erwartete Werte getestet.  
+&rarr;``` Vergleich mit Erwartungswerten```
+- **Einsatz von nativen Asserts:**
+  - Überprüfung von internen Invarianten
+  - ```Fail-Fast:```
+  - Defekte sind einfacher zu finden
+  - Es gibt wenige "tote Defekte"
+  - Nachteil: "Tote Defekte" eskalieren zu einem Fehler
+
+## Manuelles Testen
+### Freies Testen
+- **Definition:**  
+Freies Testen (Keine/wenig Vorgaben)
+- **Einsatz von manuelles Testen:**
+  - Nützlich um Feedback zu Einfachheit, Verständlichkeit, Konistenz zu erhalten
+  - Immer von neuen Personen durchführen lassen
+  - Release einer Alpha- und Betaversion
+### Angeleitetes Testen
+- **Definition:**  
+Testplan um Ablauf und Erwartung des Ergebnisses genau festzugelegen.
+- **Einsatz von angeleitetes Testen:**
+  - Nützlich um Funktionstests durchzuführen
+  - Überprüfung der Implementierung
+  - Nachteil: Spezifikation überprüfen nicht möglich
+  - Ziel: Vermeidung von „peinlichen” Fehlern im Release.
+- **Testplan:**
+  - Einführung
+  -  Überblick über das System
+  - zu testende Aspekte
+  - Testkriterien
+  - generelle Anweisungen zum Testablauf
+  - Voraussetzungen für die Tests, z.B. Software- und Hardwareanforderungen
+  - Liste von Testfällen, pro Testfall konkrete Beschreibung des Testablaufs, und des erwarteten Verhaltens
+
+## Unittests
+- **Definition:**
+Konzentration auf einzelne Komponenten um Qualität zu verbessern
+- **Vorteile:**
+  - Besserer Fokus
+  - Übersichtlich
+  - Umsetzbar während der Entwicklung
+  - Gut um Kernfunktionalität zu testen
+  - Lokale Fehlersuche möglich
+- **Nachteile:**
+  - Kann nicht das Zusammenspiel mit anderen Komponenten sicherstellen
+  - Entspricht nicht Sicht des Nutzers; eher technische Sicht.
+  
+## Integrationstests
+- **Definition:**  
+Testet mehrere Module, die im Zusammenspiel korrekt funktionieren sollen.
+
+## Funktionsorientierte Tests
+
+## Strukturorientierte Tests
+- **Kontrollflussgraph (KFG):**
+  - wie Ablaufdiagramm
+    - Knoten entsprechen Anweisungen im Quellcode
+    - Kante von Knoten1 zu Knoten2, wenn nach Anweisung1 die Anweisung2 ausgeführt werden kann
+  - Anweisungsüberdeckungstest:
+    - Jede Anweisung im KFG muss durch einen Test überdeckt werden
+  - Zweigüberdeckungstest:
+    - Jede Kante im KFG muss getestet werden
+  - Bedinungsüberdeckungstest:
+    - Jeder Ausdruck wird in atomare Teilausdrücke zerlegt.
+      - Es wird verlangt, dass alle Teilausdrücke jeweils mit ```True``` oder ```False``` ausgewertet wurden
