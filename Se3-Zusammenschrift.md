@@ -398,6 +398,20 @@ Konzentration auf einzelne Komponenten um Qualität zu verbessern
 Testet mehrere Module, die im Zusammenspiel korrekt funktionieren sollen.
 
 ## Funktionsorientierte Tests
+Testgrundlage: Spezifikation
+- **Vorgehensweisen:**
+  - Äquivalenzklassenbildung
+    - Unterteilung der Eingabeparameter in Äquivalenzklassen
+    - Klasse sollte Werte enthalten, für die die Spezifikation aussagt, dass das Verhalten für alle Elemente der Klasse gleich sein sollte
+    - Einteilung in gültige und ungültige Klassen (gültige/ungültige Eingaben)
+  - Zustandbasierter Test
+    - Zustandsautomat (Test auf gültige Übergänge)
+    - Problem: Zyklische Automaten sind nicht endlich  
+    &rarr; Beschränkung auf Abläufe einer gewissen Länge/Dauer
+  - Ursache-Wirkungsanalyse
+    - Je nach Sicht, wird die Kombination von mehreren Parametern nicht in die Äquivalenzklassenbildung einbezogen.  
+    &rarr; Abhängigkeiten der Parameter mithilfe von Entscheidungstabellen und Ursache-Wirkungs-Graphen darstellen
+
 
 ## Strukturorientierte Tests
 - **Kontrollflussgraph (KFG):**
