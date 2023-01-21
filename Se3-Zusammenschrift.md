@@ -18,21 +18,26 @@ Software-bezogene Qualität:
         - Effizienz (SW benötigt kaum Rechenzeit, als minimal erforderlich wäre)
     - Zuverlässigkeit
         - Genauigkeit (Resultate vom mathematisch korrekten Resultat nur wenig Abweichungen)
-        - Ausfallsicherheit
+        - Ausfallsicherheit (ist hoch, wenn die Software nur selten die erwartete Funktion
+          nicht erbringt)
         - Korrektheit (Spezifikation zutreffend, SW korrekt)
 - Wartbarkeit (Fähigkeit der Software, in Zukunft geändert/gewartet zu werden, ohne großen Aufwand und Kosten zu verursachen)
     - Portabilität
-        - Abgeschlossenheit
-        - Geräteunabhängigkeit
+        - Abgeschlossenheit (ist hoch, wenn Software eine gut abgegrenzte Leistung erbringt
+          und damit kaum Schnittstellen zu anderen Systemen hat)
+        - Geräteunabhängigkeit (ist hoch, wenn Merkmale spezieller Geräte darin eine geringe
+          Rolle spielen)
     - Änderbarkeit
-        - Lesbarkeit
-        - Knappheit
+        - Lesbarkeit (ist hoch, wenn Leser mit minimalen Aufwand Inhalt korrekt
+          erfassen kann)
+        - Knappheit (ist hoch, wenn Umfang durch Vermeidung von Redundanz aller
+          Art gering gehalten wurde)
         - Simplizität (hoch, wenn nur wenige schwer verst. Konstruktionen enthalten sind)
-        - Strukturiertheit (hoch, wenn SW logisch abgeschlossen und in hohem Zusammenhalt und geringer Kopplung gegliedert ist)
+        - Strukturiertheit (hoch, wenn SW logisch abgeschlossen und in hohem Zusammenhalt und   geringer Kopplung gegliedert ist)
     - Prüfbarkeit
         - Testbarkeit (Ausführung ist reproduziertbar. Vollständiges Erfassen der Resultate)
         - Lokalität (hoch, wenn Fernwirkungen in SW vermieden sind.)
-        - Spezifikationsvollständigkeit
+        - Spezifikationsvollständigkeit (ist hoch, wenn Spezifikation die tatsächlichen Anforderungen und nur diese vollständig angibt)
 
 ---
 # Architektur
